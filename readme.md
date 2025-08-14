@@ -43,7 +43,8 @@ Add entries to `NON_WHITELISTED_MODELS` as dictionaries with:
     "filename": "MODEL_FILENAME",
     "subfolder": "diffusion_models",  # or loras, controlnet, etc.
     "sha256": ""  # optional checksum
-}```
+}
+```
 
 ### 7. Run the Script
 
