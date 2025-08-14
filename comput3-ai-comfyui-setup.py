@@ -41,6 +41,10 @@
 #    - Run from terminal: `python comput3_custom_comfyui_setup.py`
 #    - The script will launch your Comput3 ComfyUI workload and setup everything you specified in a few minutes.
 #
+# 8. Start using ComfyUI
+# 
+#    - Return to your Comput3 AI Dashboard dashboard and go into ComfyUI to use your fully setup instance.
+#
 # Cheers!
 
 import json, time, sys, re
