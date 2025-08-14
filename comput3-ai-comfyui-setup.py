@@ -6,44 +6,63 @@
 # Copyright © 2025 Daïm Al-Yad (@daimalyad)
 # Licensed under the MIT License
 #
-# USAGE INSTRUCTIONS:
+# This script automates launching a Comput3 ComfyUI workload and installing your desired nodes
+# and models—both whitelisted and non-whitelisted—while handling reboot cycles and installation
+# order for you.
 #
-# 1. **Get Your API Key**
-#    - Log in to your Comput3 dashboard.
+# --------------------------------------------------------------------
+# 📋 Usage Instructions
+# --------------------------------------------------------------------
+#
+# 1. Get Your API Key
+#    - Log in to your Comput3 AI Dashboard: https://launch.comput3.ai/
 #    - Copy your Comput3 API key (it usually begins with `c3_api_...`).
-#    - Paste it into the `COMPUT3_API_KEY` variable below.
+#    - Paste it into the COMPUT3_API_KEY variable in this script.
 #
-# 2. **Choose Workload Type and Duration**
-#    - By default, `WORKLOAD_TYPE` is set to `"media:fast"`, the only type as of August of 2025.
-#    - `WORKLOAD_HOURS` controls how many hours your Comput3 ComfyUI node will run.
+# 2. Choose Workload Type and Duration
+#    - WORKLOAD_TYPE: Leave as "media:fast" (the only available type as of August 2025).
+#    - WORKLOAD_HOURS: Set how many hours your Comput3 ComfyUI node will run before auto-termination.
 #
-# 3. **Add Whitelisted Nodes**
-#    - In `NODE_QUERIES`, list any nodes that are available in Comput3's **whitelisted** catalog.
-#    - Use full names copied from the whitelist, or partial names / repo titles — the script will try to figure it out.
+# 3. Add Whitelisted Nodes (Optional)
+#    - Edit NODE_QUERIES to include nodes you want from Comput3's whitelisted catalog.
+#    - You can use:
+#        * Full names copied from the whitelist.
+#        * Partial names or repository titles — the script matches them leniently.
 #
-# 4. **Add Whitelisted Models**
-#    - In `WHITELISTED_MODEL_QUERIES`, list models from the Comput3 **whitelisted** catalog.
-#    - You can use the display name from the whitelist, the filename, or part of either.
+# 4. Add Whitelisted Models (Optional)
+#    - Edit WHITELISTED_MODEL_QUERIES to include models from the whitelisted catalog.
+#    - You can specify:
+#        * Display names from the whitelist.
+#        * Filenames.
+#        * Partial matches of either.
 #
-# 5. **Add Custom GitHub Nodes (Optional)**
-#    - In `GITHUB_NODE_URLS`, list full GitHub repository URLs for custom nodes you want installed.
-#    - The script *always* installs `apeirography/daimalyadnodes` automatically, to allow non-whitelisted model installations.
+# 5. Add Custom GitHub Nodes (Optional)
+#    - Add full GitHub repository URLs to GITHUB_NODE_URLS.
+#    - Note: The script always installs apeirography/daimalyadnodes automatically
+#      to enable non-whitelisted model installations.
 #
-# 6. **Add Non-Whitelisted Models (Optional)**
-#    - In `NON_WHITELISTED_MODELS`, provide a list of dictionaries with:
-#        - `"url"`: direct download link to the model file.
-#        - `"filename"`: desired filename (must match exactly what the server saves).
-#        - `"subfolder"`: target subfolder in `/models/` (e.g., `"diffusion_models"`, `"loras"`).
-#        - `"sha256"`: optional checksum for integrity verification.
+# 6. Add Non-Whitelisted Models (Optional)
+#    - Add entries to NON_WHITELISTED_MODELS as dictionaries:
+#        {
+#            "url": "DIRECT_DOWNLOAD_URL",
+#            "filename": "MODEL_FILENAME",
+#            "subfolder": "diffusion_models",  # or loras, controlnet, etc.
+#            "sha256": ""  # optional checksum
+#        }
 #
-# 7. **Run the Script**
-#    - Save your changes.
-#    - Run from terminal: `python comput3_custom_comfyui_setup.py`
-#    - The script will launch your Comput3 ComfyUI workload and setup everything you specified in a few minutes.
+# 7. Run the Script
+#    - Save your changes to this .py file.
+#    - Run from your terminal:
+#        python comput3_custom_comfyui_setup.py
+#    - After a few minutes of API calls and waiting for completion, the script will have:
+#        1. Launched your Comput3 ComfyUI workload.
+#        2. Installed whitelisted nodes and models.
+#        3. Installed your custom GitHub nodes.
+#        4. Rebooted ComfyUI and waited for it to fully restart.
+#        5. Installed non-whitelisted models.
 #
-# 8. Start using ComfyUI
-# 
-#    - Return to your Comput3 AI Dashboard dashboard and go into ComfyUI to use your fully setup instance.
+# 8. Start Using Your Customized ComfyUI
+#    - Return to your Comput3 AI Dashboard and open ComfyUI to use your fully set up instance.
 #
 # Cheers!
 
